@@ -2,8 +2,8 @@ name: Run Yahoo Finance Script Daily
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # Runs every day at 4:00 PM PKT
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '10 11 * * *'  # 4:15 PM PKT (UTC+5: 11:15 UTC)
+  workflow_dispatch:       # Allows manual trigger
 
 jobs:
   run-script:
@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pandas requests beautifulsoup4
+
+      - name: List files (for debugging)
+        run: ls -R
 
       - name: Run Yahoo Finance script
         run: python Yahoo_Finance_Script/Yahoo_Finance_stock.py
